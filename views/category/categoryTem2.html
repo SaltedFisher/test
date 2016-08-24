@@ -1,0 +1,40 @@
+
+<div class="tmp2">
+<!--左边-->
+	<ion-scroll class="category-nav" delegate-handle="category-nav">
+		<ion-list class="list-borderless">
+			<ion-item ng-repeat="obj in categoryTreeData" ng-class="{'active':$index==activeItem}" ng-click="navItemAction($index)">
+				{{obj.name}}
+			</ion-item>
+		</ion-list>
+	</ion-scroll>
+<!--右边-->
+	<ion-scroll class="nav-content" delegate-handle="nav-content" on-scroll="contentScrollAction()"> 
+		<div ng-repeat="obj in categoryTreeData"  ng-style="{{itemStyleArr[$index]}}">
+			<p class="title">{{obj.name}}</p>
+			<div class="tree-list">
+				<div class="tree-item" ng-repeat="item in obj.subcategories">
+					<img ng-src="{{item.icon_url}}"/>
+					<p>{{item.name}}</p>
+				</div>
+			</div>
+		</div>
+	</ion-scroll>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

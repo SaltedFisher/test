@@ -1,0 +1,31 @@
+<div class="tmp1">
+	<div class="columns">
+		<p>栏目</p>
+		<ion-scroll direction="x" scrllbar-x="false">
+			<div class="colums-list">
+				<div class="columns-item" collection-repeat="obj in columnsData" item-width="300" item-height="80">
+					{{obj.title}}
+					{{obj.subtitle}}
+					{{obj.author}}
+				</div>
+			</div>
+		</ion-scroll>
+	</div>
+	<ion-list><!--品类 风格 对象-->
+		<ion-item ng-repeat="obj in groups">
+			<div class="group">
+				<p class="group-title">
+					{{obj.name}}
+					<span ng-if="obj.isMore" ng-click="showMore($index)">查看全部</span>
+				</p>
+				<div class="group-content">
+					<div class="group-item" ng-repeat="itemData in obj.channels">
+						<div class="pic">
+							<img ng-src="{{itemData.cover_image_url}}"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-item>
+	</ion-list>
+</div>

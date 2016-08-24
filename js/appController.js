@@ -1,0 +1,1 @@
+var appContrl = angular.module('app-contrl',[])

@@ -1,0 +1,21 @@
+<ion-view title="分类" class="category">
+	<ion-nav-title class="category-title">
+		<div class="button-bar">											<!--点击事件分别传个参数，否则点任一个都左右切换-->
+			<button class="button button-clear" ng-class="{'btn-active':switchBtn}" ng-click="switchBtnAction(true)">攻略</button>
+			<button class="button button-clear"  ng-class="{'btn-active':!switchBtn}" ng-click="switchBtnAction(false)">分类</button>
+		</div>
+	</ion-nav-title>
+
+		<!--公共的搜索按钮-->
+		<div class="search-btn bar bar-subheader" ng-click="searchAction()">
+			<p class="search-title"><i class="icon ion-search"></i>搜索</p>
+		</div>
+
+	<ion-content class="category-content has-subheader" delegate-handle="category-content">
+		<!--<div ng-if="switchBtn">攻略</div>
+		<div ng-if="!switchBtn">单品</div>-->
+			
+		<div  ng-include="temUrl" class="tmp"></div>
+		
+	</ion-content>
+</ion-view>

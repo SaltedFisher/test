@@ -1,0 +1,63 @@
+<ion-view title="礼物说" class="main-view">
+	<!--
+		title是图片时放在ion-nav-title里
+		<ion-nav-title>
+			<img src="" alt="" />
+		</ion-nav-title>
+	-->
+	<ion-nav-buttons side="left">
+		<ion-button class="button button-clear icon ion-calendar"></ion-button>
+	</ion-nav-buttons>
+	
+	<ion-nav-title class="main-title">
+		<h2 class="main-title title ">礼物说</h2>
+	</ion-nav-title>
+	
+	<ion-nav-buttons side="right">
+		<ion-button class="button button-clear icon ion-ios-search" ng-click="searchAction()"></ion-button>
+	</ion-nav-buttons>
+	
+<!--小导航-->		
+	<div class="nav bar bar-subheader">
+		<ion-scroll direction="x" scrollbar-x="false">
+			<div class="button-bar">
+<!--ng-class="{'btn-active':$index=0}"给第一个button添加class名-->
+				<button ng-class="{'btn-active':$index==index}" class="button button-clear" ng-repeat="obj in navData" ng-click="change($index,obj.id)">{{obj.name}}</button>
+			</div>			
+		</ion-scroll>
+	</div>
+	
+	<ion-content class="main-content has-subheader" delegate-handle="main-content">	
+		<!--下拉刷新-->
+		<ion-refresher on-refresh="dorefresh()"></ion-refresher>
+<!--banner图-->
+		<div class="banner">
+			<ion-slide-box does-continue="true" auto-play="true" ng-if="index==0">
+				<ion-slide ng-repeat="imgUrl in bannerData">
+					<img ng-src="{{imgUrl}}" />
+				</ion-slide>
+			</ion-slide-box>
+		</div>
+<!--滚动视图-->	
+		<div class="main-topic" ng-if="index==0"> 
+			<ion-scroll  direction="x" scrollbar-x="false">
+																				<!--设置占位图片（图片加载不出来时显示的图片）-->
+				<img ng-repeat="img in secondaryBannerData" ng-src="{{img}}" src="../../images/placeholder.jpg"/>
+			</ion-scroll>
+		</div>
+<!--列表-->		
+		<div class="main-list">
+			<ion-list>
+				<ion-item ng-repeat="item in mainListData" class="item-image" ng-click="itemDetail(item.id)">
+					<img ng-src="{{item.coverImg}}" />
+					<div class="item-text">
+						<p>{{item.title}}</p>
+						<p><i class="icon ion-ios-heart-outline assertive"></i>{{item.likes}}</p>
+					</div>
+				</ion-item>
+			</ion-list>
+		</div>
+		<!--上拉加载-->
+			<ion-infinite-scroll ng-if="canLoadMore"	on-infinite="loadMore()" immediate-check="false" spinner="dots"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

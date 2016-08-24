@@ -1,0 +1,39 @@
+<ion-view title="热门">
+	<ion-nav-buttons side="right">
+		<ion-button class="button button-clear icon ion-ios-search" ng-click="searchAction()"></ion-button>
+	</ion-nav-buttons>
+	
+	<ion-content class="hot-content">
+		<!--
+			collection-repeat	高级遍历
+			item-width		设置宽高
+			item-height
+		-->
+		<ion-refresher  spinner="lines" pulling-text="下拉刷新..." on-refresh="refreshAction()" on-pulling="pullingAction()"></ion-refresher>
+		<ion-list class="list-borderless hot-list">
+			<ion-item collection-repeat="obj in hotListData" item-width="50%" item-height="243" ng-class="{'left':$index%2==0,'right':$index%2==1}">
+				<div class="hot-item">
+					<img ng-src="{{obj.imgUrl}}"/>
+					<div class="shopMessage">
+						<p>{{obj.name}}</p>
+						<p class="price">
+							{{'￥'+obj.price}}
+							<span>
+								<i class="icon ion-ios-heart-outline"></i>
+								{{obj.like}}
+							</span>
+						</p>
+					</div>
+					
+				</div>
+			</ion-item>
+		</ion-list>
+		
+		<ion-infinite-scroll class="load" spinner="dots" immediate-check="false" distance="1%"	on-infinite="loadMore()">
+				
+		</ion-infinite-scroll>
+		
+		
+	</ion-content>
+	
+</ion-view>
